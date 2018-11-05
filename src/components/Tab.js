@@ -6,7 +6,7 @@ class Tab extends Component {
 
   static PropTypes = {
     name: PropTypes.string.isRequired,
-    tabID: PropTypes.string.isRequired,
+    tabID: PropTypes.number.isRequired,
     isSelected: PropTypes.bool.isRequired
   }
 
