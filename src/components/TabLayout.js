@@ -35,10 +35,12 @@ class TabLayout extends Component {
 
   removeTab = (currentTab) => {
     let nextTab = currentTab - 1;
+    console.log(nextTab);
     delete Content[currentTab];
     this.setState(() => ({
       currentTab: nextTab,
       lastTab: Object.keys(Content).length,
+      content: Content[nextTab].content
     }))
   }
 
