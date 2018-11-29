@@ -41,7 +41,7 @@ export const Tabs = () => {
 
 ## Components
 
-### Tab
+### `<Tab/>`
 
 Each tab component
 
@@ -49,7 +49,7 @@ Each tab component
 `name` Display name for the Tab component
 `tabID` ID to be associated for the unique tab (Will be used to connect to the corresponding `<TabContent/>`)
 
-### TabContent
+### `<TabContent/>`
 
 Display box for content of each Tab,
 
@@ -69,6 +69,6 @@ Rendered using `props.children`
 
 ### `<TabLayout/>`
 The overall container for all the components with this app.
-### TabContainer
+### `<TabContainer/>`
 Container for the `<Tab/>` components, horizontally organized.
 
