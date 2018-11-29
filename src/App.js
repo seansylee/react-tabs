@@ -1,25 +1,31 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import TabLayout, {Tab, TabContent, TabContainer} from './components/TabLayout'
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+      <div>
+        <TabLayout 
+          selected="2">
+          <TabContainer>
+            <Tab name="Tab 1" tabID="1"/>  
+            <Tab name="Tab 2" tabID="2"/>  
+            <Tab name="Tab 3" tabID="3"/>  
+            <Tab name="Tab 4" tabID="4"/>  
+          </TabContainer>
+          <TabContent tabID="1">
+            <h1>IM TAB 1</h1>
+          </TabContent>
+          <TabContent tabID="2">
+            <h1>IM TAB 2</h1>
+          </TabContent>
+          <TabContent tabID="3">
+            <h1>IM TAB 3</h1>
+          </TabContent>
+          <TabContent tabID="4">
+            <h1>IM TAB 4</h1>
+          </TabContent>
+        </TabLayout>
       </div>
     );
   }

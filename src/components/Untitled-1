@@ -1,0 +1,44 @@
+Let’s build a `Tab` component.
+
+```Figure 1.
+
+Tab 1 | Tab 2 | Tab 3
+-----------------------------------
+Tab Panel with active tab's content
+
+
+-----------------------------------```
+
+*Requirements*
+
+1. User can select a tab and view its content
+2. Selected tab becomes an active tab (with some visual indicator)
+3. Inactive tabs contents are not visible
+4. "User" can set/override default tab
+5. "User" can disable certain tabs
+6.
+7.
+8.
+...
+
+
+import TabLayout, { TabLayout2, TabLayout3 } from './TabLayout';
+
+class MyTabs extends React.Component {
+  render() {
+    <TabLayout selected="2">
+      <ContentBox />
+      <ContentBox />
+      <ContentBox />
+      <ContentBox />
+      <Tab />
+      <Tab name="Tab 2" disabled />
+      <Tab />
+      <Tab />
+    </TabLayout>
+  }
+}
+
+React.cloneElement(Tab, {
+  handleClicked: () => {}
+})
