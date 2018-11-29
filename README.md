@@ -18,7 +18,7 @@ $ npm install
 
 Here is an example usage.
 
-```
+```js
 import {TabLayout, TabContainer, TabContent, Tab} from './components/TabLayout'
 
 export const Tabs = () => {
@@ -41,9 +41,7 @@ export const Tabs = () => {
 
 ## Components
 
-
-
-### <Tab/>
+### Tab
 
 Each tab component
 
@@ -51,7 +49,7 @@ Each tab component
 `name` Display name for the Tab component
 `tabID` ID to be associated for the unique tab (Will be used to connect to the corresponding `<TabContent/>`)
 
-### <TabContent/>
+### TabContent
 
 Display box for content of each Tab,
 
@@ -59,7 +57,7 @@ Display box for content of each Tab,
 `tabID` ID tied to each `<Tab/>` component
 #### Specific usage
 Rendered using `props.children`
-```
+```js
 <TabContent tabID="1">
   ...
   ...
@@ -69,8 +67,8 @@ Rendered using `props.children`
 <TabContent/>
 ```
 
-### <TabLayout/>
+### `<TabLayout/>`
 The overall container for all the components with this app.
-### <TabContainer/>
+### TabContainer
 Container for the `<Tab/>` components, horizontally organized.
 
