@@ -1,58 +1,86 @@
 import React, {Component} from 'react'
-// import Tab from './Tab'
 import Content from '../utils/Content'
 import PropTypes from 'prop-types'
 
 class TabLayout extends Component {
   state = {
-    currentTab: this.props.selected,
+    selected: "1"
   };
 
+  handleSelect = (tabID) => {
+    console.log("Ive been triggered by: ", tabID);
+    this.setState({
+      selected: tabID
+    });
+  }
+
   render(){
+    const {children} = this.props;
+    const childrenWithProps = React.Children.map(children, child =>
+      React.cloneElement(child, {
+        handleSelect: this.handleSelect,
+        selected: this.state.selected
+      })
+    );
+    
     return (
       <div className='tab-layout-container'>
-        {this.props.children}
+        {childrenWithProps}
       </div>
     )
   }
 }
 
-export const TabContainer = ({children}) => (
-  <div className='tab-container'>
-    {children}
-  </div>
-)
-
-export const Tab = (props) => {
-    const {tabID, name, isSelected, disabled} = props;
-    return (
-          <button
-            className='tab' 
-            onClick={() => console.log(tabID, "has been selected")}
-            style={{background: isSelected? 'gray' : 'none'}}
-            disabled={disabled}>
-            {name}
-          </button>
+export class TabContainer extends Component {
+  render(){
+    const {handleSelect, children, selected} = this.props;
+    const childrenWithProps = React.Children.map(children, child =>
+      React.cloneElement(child, {
+        handleSelect: handleSelect,
+        selected: selected
+      })
     );
+    return (
+      <div className='tab-container'>
+        {childrenWithProps}
+      </div>
+    )
+  }
 }
 
-export const ContentBox = ({ content }) => {
+export const TabContent = (props) => {
+  const {tabID, selected, children} = props;
+  const isSelected = (selected == tabID);
   return (
-    <div className='display-container'>
+    <div 
+      className='display-container'
+      style={{display: isSelected? null : 'none'}}>
       <div className='display'>
-        {content}
+        {children}
       </div>
     </div>
-  )
+  );
 }
-ContentBox.PropTypes ={
-  content: PropTypes.string.isRequired
+
+
+export const Tab = (props) => {
+  const {tabID, name, selected, disabled, handleSelect} = props;
+  let isSelected = (selected == tabID);
+  return (
+        <button
+          className='tab' 
+          onClick={() => handleSelect(tabID)}
+          style={{background: isSelected? 'gray' : 'none'}}
+          disabled={disabled || isSelected}>
+          {name}
+        </button>
+  );
 }
 
 Tab.PropTypes = {
   name: PropTypes.string.isRequired,
   tabID: PropTypes.number.isRequired,
-  isSelected: PropTypes.bool.isRequired
+  selected: PropTypes.number.isRequired
 };
 
 export default TabLayout;
