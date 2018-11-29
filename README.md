@@ -24,16 +24,19 @@ import {TabLayout, TabContainer, TabContent, Tab} from './components/TabLayout'
 export const Tabs = () => {
   return(
     <TabLayout>
+
       <TabContainer>
         <Tab name="Tab 1" tabID="1"/>
         <Tab name="Tab 2" tabID="2"/>
-      <TabContainer/>
+      <TabContainer />
+
       <TabContent tabID="1">
         <div> THIS IS THE CONTENT FOR TAB 1<div/>
       <TabContent/>
       <TabContent tabID="2">
         <div> MORE CONTENT FOR TAB 2<div/>
-      <TabContent/>
+      <TabContent />
+
     <TabLayout />
   )
 }
@@ -41,20 +44,20 @@ export const Tabs = () => {
 
 ## Components
 
-### `<Tab/>`
+### `<Tab />`
 
 Each tab component
 
 #### props
-`name` Display name for the Tab component
+`name` Display name for the Tab component <br />
 `tabID` ID to be associated for the unique tab (Will be used to connect to the corresponding `<TabContent/>`)
 
-### `<TabContent/>`
+### `<TabContent />`
 
 Display box for content of each Tab,
 
 #### props
-`tabID` ID tied to each `<Tab/>` component
+`tabID` ID tied to each `<Tab />` component
 #### Specific usage
 Rendered using `props.children`
 ```js
@@ -67,8 +70,8 @@ Rendered using `props.children`
 <TabContent/>
 ```
 
-### `<TabLayout/>`
+### `<TabLayout />`
 The overall container for all the components with this app.
-### `<TabContainer/>`
+### `<TabContainer />`
 Container for the `<Tab/>` components, horizontally organized.
 
