@@ -1,14 +1,12 @@
 import React, {Component} from 'react'
-import Content from '../utils/Content'
 import PropTypes from 'prop-types'
 
 class TabLayout extends Component {
   state = {
-    selected: "1"
+    selected: this.props.selected || 0
   };
 
   handleSelect = (tabID) => {
-    console.log("Ive been triggered by: ", tabID);
     this.setState({
       selected: tabID
     });
@@ -34,10 +32,11 @@ class TabLayout extends Component {
 export class TabContainer extends Component {
   render(){
     const {handleSelect, children, selected} = this.props;
-    const childrenWithProps = React.Children.map(children, child =>
+    const childrenWithProps = React.Children.map(children, (child, index)=>
       React.cloneElement(child, {
-        handleSelect: handleSelect,
-        selected: selected
+        handleSelect: () => handleSelect(index),
+        selected: selected,
+        isSelected: (selected === index)
       })
     );
     return (
@@ -48,13 +47,23 @@ export class TabContainer extends Component {
   }
 }
 
+export class TabContentContainer extends Component {
+  render(){
+    const {children, selected} = this.props
+    return (
+      <div> 
+        {children[selected]}
+      </div>
+    )  
+  };
+  
+}
+
 export const TabContent = (props) => {
-  const {tabID, selected, children} = props;
-  const isSelected = (selected == tabID);
+  const {children} = props;
   return (
     <div 
-      className='display-container'
-      style={{display: isSelected? null : 'none'}}>
+      className='display-container'>
       <div className='display'>
         {children}
       </div>
@@ -64,12 +73,11 @@ export const TabContent = (props) => {
 
 
 export const Tab = (props) => {
-  const {tabID, name, selected, disabled, handleSelect} = props;
-  let isSelected = (selected == tabID);
+  const {isSelected, name, disabled, handleSelect} = props;
   return (
         <button
           className='tab' 
-          onClick={() => handleSelect(tabID)}
+          onClick={handleSelect}
           style={{background: isSelected? 'gray' : 'none'}}
           disabled={disabled || isSelected}>
           {name}
